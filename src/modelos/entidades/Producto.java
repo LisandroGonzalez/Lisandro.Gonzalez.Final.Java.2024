@@ -4,6 +4,7 @@ import java.io.Serializable;
 import servicios.Identificable;
 
 public abstract class Producto implements Comparable<Producto>, Serializable, Identificable {
+    private static final long serialVersionUID = 1L;
     private int id;
     private String nombre;
     private double precio;
