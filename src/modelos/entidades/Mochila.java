@@ -1,22 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos.entidades;
 
-/**
- *
- * @author USER
- */
 public class Mochila extends Producto {
     private String disenio;
     private double capacidad;
     
     /**
-     * Comparador por defecto, establece todos los valores en null
+     * Constructor por defecto, establece todos los valores en null
      */
     public Mochila() {}
     
+    /**
+     * Constructor auxiliar
+     * @param id 
+     */
     public Mochila(int id) {
         super(id);
     }
@@ -65,9 +61,6 @@ public class Mochila extends Producto {
     }
     
     @Override
-    /**
-     * Retorna una cadena con formato con los valores de sus atributos
-     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString()); // Utiliza el toString de Producto
@@ -78,13 +71,14 @@ public class Mochila extends Producto {
     }
     
     @Override
-    /**
-     * Verifica que las mochilas sean iguales.
-     */
     public boolean equals(Object obj) {
-        boolean esIgualProd = super.equals(obj); // Compara usando el equals de Producto
+        // Compara usando el equals de Producto
+        boolean esIgualProd = super.equals(obj);
         
+        // Casteo de Object a Mochila
         Mochila that = (Mochila) obj;
+        
+        // Retorna la comparacion como producto y luego los valores de los atributos de Mochila
         return esIgualProd && 
                 this.disenio.equals(that.disenio) &&
                 this.capacidad == that.capacidad;

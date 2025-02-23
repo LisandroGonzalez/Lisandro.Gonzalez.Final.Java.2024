@@ -1,19 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos.entidades;
 
-/**
- *
- * @author USER
- */
 public class Lapicera extends Producto {
     private Color color;
     private TipoLapicera tipo;
     
     /**
-     * Comparador por defecto, establece todos los valores en null
+     * Constructor por defecto, establece todos los valores en null
      */
     public Lapicera() {}
     
@@ -52,7 +44,6 @@ public class Lapicera extends Producto {
         this.tipo = tipo;
     }
     
-    
     public Color getColor() {
         return color;
     }
@@ -70,9 +61,6 @@ public class Lapicera extends Producto {
     }
     
     @Override
-    /**
-     * Retorna una cadena con formato con los valores de sus atributos
-     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(super.toString()); // Utiliza el toString de Producto
@@ -83,20 +71,21 @@ public class Lapicera extends Producto {
     }
     
     @Override
-    /**
-     * Verifica que las lapiceras sean iguales.
-     */
     public boolean equals(Object obj) {
-        boolean esIgualProd = super.equals(obj); // Compara usando el equals de Producto
+        // Compara usando el equals de Producto
+        boolean esIgualProd = super.equals(obj);
         
+        // Casteo de Object a Lapicera
         Lapicera that = (Lapicera) obj;
+        
+        // Retorna la comparacion como producto y luego los valores de los atributos de Lapicera
         return esIgualProd &&
                 this.color.equals(that.color) &&
                 this.tipo.equals(that.tipo);
     }
     
     /**
-     * Compara los colores de las lapiceras usando comparacion natural
+     * Compara los colores de las lapiceras
      * @param l1
      * @param l2
      * @return 0 -> son iguales
@@ -106,7 +95,7 @@ public class Lapicera extends Producto {
     }
     
     /**
-     * Compara los tipos de las lapiceras usando comparacion natural
+     * Compara los tipos de las lapiceras
      * @param l1
      * @param l2
      * @return 0 -> son iguales

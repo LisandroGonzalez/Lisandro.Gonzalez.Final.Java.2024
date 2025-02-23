@@ -1,19 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelos.entidades;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 import servicios.Identificable;
 
-/**
- *
- * @author Lisandro
- */
 public abstract class Producto implements Comparable<Producto>, Serializable, Identificable {
     private int id;
     private String nombre;
@@ -81,9 +70,6 @@ public abstract class Producto implements Comparable<Producto>, Serializable, Id
     }
     
     @Override
-    /**
-     * Retorna una cadena con formato con los valores de sus atributos
-     */
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ID: ").append(id).append("\n");
@@ -98,7 +84,7 @@ public abstract class Producto implements Comparable<Producto>, Serializable, Id
      * Evalua si los valores de los atributos de ambos productos son iguales
      * @param p1
      * @param p2
-     * @return true || false
+     * @return resultado de la comparacion
      */
     private static boolean sonIguales(Producto p1, Producto p2) {
         return p1.id == p2.id &&
@@ -109,30 +95,32 @@ public abstract class Producto implements Comparable<Producto>, Serializable, Id
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj) { // Si los objetos son iguales
             return true;
         }
-        if (obj == null) {
+        if (obj == null) { // Si el objeto es null
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass()) { // Si las clases no coinciden
             return false;
         }
         
+        // Casteo de Object a Producto
         Producto that = (Producto) obj;
-        return sonIguales(this, that);
+        return sonIguales(this, that); // Resultado de la comparacion
     }
     
     @Override
     /**
-     * Usa compareTo de la clase Integer para comparar 2 precios
+     * Comparador natural de la clase,
+     * Usa compare de la clase Integer para comparar 2 Id
      */
     public int compareTo(Producto that) {
         return Integer.compare(this.id, that.id);
     }
     
     /**
-     * Usa compareTo de la clase Double para comparar 2 precios
+     * Usa compare de la clase Double para comparar 2 precios
      * @param p1
      * @param p2
      * @return 0 -> son iguales
