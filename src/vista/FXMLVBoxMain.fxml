@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FXMLVBoxMainController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Productos">
+            <items>
+                  <MenuItem fx:id="menuItemLapiceras" mnemonicParsing="false" onAction="#handleMenuItemLapiceras" text="Lapiceras" />
+              <MenuItem fx:id="menuItemMochilas" mnemonicParsing="false" onAction="#handleMenuItemMochilas" text="Mochilas" />
+                  <MenuItem fx:id="menuItemLibros" mnemonicParsing="false" onAction="#handleMenuItemLibros" text="Libros" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Texto">
+            <items>
+                  <MenuItem fx:id="menuItemTextoProductos" mnemonicParsing="false" onAction="#handleMenuItemTextoProductos" text="Productos" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane fx:id="anchorPane" prefHeight="575.0" prefWidth="1100.0" />
+   </children>
+</VBox>

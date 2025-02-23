@@ -1,0 +1,7 @@
+id,nombre,precio,marca,color,tipo
+1,Oscuro,2000.0,Dark,NEGRO,CON_TAPA
+2,Fuego,1900.0,Fire,ROJO,ESTILOGRAFICA
+3,Mar,1700.0,Sea,AZUL,RETRACTIL
+4,Maiz,500.0,Corn,AMARILLO,ESTILOGRAFICA
+5,Tierra,1800.0,Earth,MARRON,CON_TAPA
+6,Lavanda,700.0,Lavender,VIOLETA,RETRACTIL
