@@ -2,14 +2,14 @@ package servicios;
 
 import java.util.List;
 import modelos.entidades.Producto;
-import modelos.excepciones.ElementoNoEncontradoException;
+import excepciones.ElementoNoEncontradoException;
 
 public interface CRUD <T extends Producto> {
     void agregar(T e);
     
     void eliminar(T e);
     
-    void modificar(T e) throws ElementoNoEncontradoException;
+    void modificar(T e);
     
     List<T> getLista();
 }

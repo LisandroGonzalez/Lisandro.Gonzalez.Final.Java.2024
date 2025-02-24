@@ -40,6 +40,9 @@ public interface Auxiliar <T extends Producto> {
             // Avanza a la superclase
             clase = clase.getSuperclass();
         }
+        
+        // En caso de que tenga el atributo serialVersionUID lo remueve de la lista
+        campos.removeIf(campo -> campo.getName().equals("serialVersionUID"));
 
         // Convierte la lista en un array
         return campos.toArray(new Field[0]);

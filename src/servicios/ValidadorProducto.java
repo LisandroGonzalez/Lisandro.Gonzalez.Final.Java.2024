@@ -1,4 +1,4 @@
-package validadores;
+package servicios;
 
 public interface ValidadorProducto {
     /**

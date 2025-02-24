@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import modelos.entidades.GeneroLibro;
 import static modelos.entidades.GeneroLibro.HISTORIA;
 import modelos.entidades.Libro;
-import validadores.ValidadorProducto;
+import servicios.ValidadorProducto;
 import servicios.Auxiliar;
 
 public class FXMLAnchorPaneLibrosDialogoController implements Initializable, ValidadorProducto, Auxiliar<Libro> {
@@ -43,7 +43,10 @@ public class FXMLAnchorPaneLibrosDialogoController implements Initializable, Val
     @FXML
     private TextField txtFieldCantHojas;
     
+    // Ventana de dialogo
     private Stage ventana;
+    
+    // Atributos para la manipulacion de datos
     private boolean btnConfirmarApretado = false;
     private Libro libro;
 
@@ -89,6 +92,7 @@ public class FXMLAnchorPaneLibrosDialogoController implements Initializable, Val
         cargarMenuButtons();
     }    
     
+    @FXML
     public void handleBtnConfirmar() {
         if (datosValidos()) {
             libro.setNombre(txtFieldNombre.getText());
@@ -102,12 +106,13 @@ public class FXMLAnchorPaneLibrosDialogoController implements Initializable, Val
         }
     }
     
+    @FXML
     public void handleBtnCancelar() {
-        ventana.close();
+        ventana.close(); // Cierra la ventana de dialogos sin modificar la lista
     }
     
     private void cargarMenuButtons() {
-        // Obtengo las ObservableList mediante el llamado a obtenerValoresEnum(), el cual retorna una lista de Strings
+        // Obtengo la ObservableList mediante el llamado a obtenerValoresEnum(), el cual retorna una lista de Strings
         // con los valores del Enum pasado por parametro, a la que luego se la transforma en obs list para poder
         // desplegarla en los menu buttons.
         ObservableList generosObsList = FXCollections.observableArrayList(obtenerValoresEnum(GeneroLibro.class));
@@ -138,6 +143,7 @@ public class FXMLAnchorPaneLibrosDialogoController implements Initializable, Val
             mensajeError += "Genero invalido.\n";
         }
 
+        // Si la cadena no esta vacia, entonces hubo un error en el ingreso de datos
         if(isStringValido(mensajeError)) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error.");

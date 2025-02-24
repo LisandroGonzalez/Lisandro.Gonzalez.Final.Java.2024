@@ -19,7 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import modelos.entidades.Mochila;
 import modelos.gestores.GestorGenerico;
-import validadores.ValidadorProducto;
+import servicios.ValidadorProducto;
 
 public class FXMLAnchorPaneMochilasController implements Initializable, ValidadorProducto {
 
@@ -102,6 +102,7 @@ public class FXMLAnchorPaneMochilasController implements Initializable, Validado
         // Carga la lista de lapiceras en una ObservableList para poder usarla dentro de JavaFX
         obsListMochilas = FXCollections.observableArrayList(gestorMochilas.getLista());
         
+        // Necesario para la actualizacion
         tableViewMochilas.refresh();
         
         // Le inserta las lapiceras que haya en la lista a la TableView
@@ -135,9 +136,14 @@ public class FXMLAnchorPaneMochilasController implements Initializable, Validado
     public void handleAgregarMochila() throws IOException {
         // Se crea una mochila vacia para luego settearle los datos el la ventana de dialogo
         Mochila mochila = new Mochila();
+        
+        // Se le asigna el id
         mochila.setId(gestorMochilas.obtenerNuevoID(gestorMochilas.getLista()));
+        
+        // Abre la ventana para ingresar los datos de la Mochila y guarda el retorno
         boolean confirmado = abrirFXMLAnchorPaneMochilasDialogo(mochila);
         
+        // En caso de que se haya confirmado la agregacion
         if(confirmado) {
             gestorMochilas.agregar(mochila);
             cargarTableViewMochilas();
@@ -150,6 +156,7 @@ public class FXMLAnchorPaneMochilasController implements Initializable, Validado
         Mochila mochila = tableViewMochilas.getSelectionModel().getSelectedItem();
         
         if(mochila != null) {
+            // Abre la ventana para modificar los datos de la Mochila y guarda el retorno
             boolean confirmado = abrirFXMLAnchorPaneMochilasDialogo(mochila);
             if (confirmado) {
                 gestorMochilas.modificar(mochila);

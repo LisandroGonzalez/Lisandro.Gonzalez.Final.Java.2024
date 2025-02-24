@@ -24,7 +24,7 @@ import modelos.entidades.Producto;
 import modelos.gestores.GestorGenerico;
 import static modelos.repositorios.RepositorioGenerico.importarATxt;
 import servicios.IdentificableFunc;
-import validadores.ValidadorProducto;
+import servicios.ValidadorProducto;
 import servicios.ListFunc;
 
 public class FXMLAnchorPaneListadoProductosController<T extends Producto> 
@@ -118,7 +118,9 @@ public class FXMLAnchorPaneListadoProductosController<T extends Producto>
             // Bandera que determina si se applica el filtro
             boolean flag;
             
+            // CASO 1: Ambos son numeros enteros
             if(isNumeroPositivo(txtFieldPrecioMinimo.getText()) && isNumeroPositivo(txtFieldPrecioMaximo.getText())) {
+                
                 // Confirma que esten bien ingresados los numeros
                 if (Double.parseDouble(txtFieldPrecioMinimo.getText()) < Double.parseDouble(txtFieldPrecioMaximo.getText())) {
                     filtro = t -> t.getPrecio() >= Double.parseDouble(txtFieldPrecioMinimo.getText()) 
@@ -133,14 +135,17 @@ public class FXMLAnchorPaneListadoProductosController<T extends Producto>
                     alerta.show();
                 }
             }
+            // CASO 2: El minimo es un numero entero y el maximo esta vacio
             else if (isNumeroPositivo(txtFieldPrecioMinimo.getText()) && !isStringValido(txtFieldPrecioMaximo.getText())) {
                 filtro = t -> t.getPrecio() >= Double.parseDouble(txtFieldPrecioMinimo.getText());
                 flag = true;
             }
+            // CASO 3: El minimo esta vacio y el maximo es un numero entero
             else if (!isStringValido(txtFieldPrecioMinimo.getText()) && isNumeroPositivo(txtFieldPrecioMaximo.getText())) {
                 filtro = t -> t.getPrecio() <= Double.parseDouble(txtFieldPrecioMaximo.getText());
                 flag = true;
             }
+            // CASO 4: Ambos campos estan vacios
             else if (!isStringValido(txtFieldPrecioMinimo.getText()) && !isStringValido(txtFieldPrecioMaximo.getText())) {
                 flag = false;
              }
@@ -155,9 +160,9 @@ public class FXMLAnchorPaneListadoProductosController<T extends Producto>
             // En caso de que se haya definido un filtro
             if(flag) {
                 listado = filtrarLista(gestorProductos.getLista(), filtro);
-                txtAreaProductos.setText(obtenerListaEnString(listado, listado.getFirst().getClass().getSimpleName()+"s"));
+                txtAreaProductos.setText(obtenerListaEnString(listado));
             } 
-            // En caso de que los campos Min y Max esten vacios
+            // En caso de que los campos Min y Max esten vacios o se hayan ingresado datos invalidos
             else {
                 listado = gestorProductos.getLista();
                 txtAreaProductos.setText(obtenerListaEnString(listado, listado.getFirst().getClass().getSimpleName()+"s"));
@@ -204,7 +209,7 @@ public class FXMLAnchorPaneListadoProductosController<T extends Producto>
     
     private void ordenarListado(Comparator<T> comparacion) {
         listado = ordenarLista(listado, comparacion);
-        txtAreaProductos.setText(obtenerListaEnString(listado, listado.getFirst().getClass().getSimpleName()+"s"));
+        txtAreaProductos.setText(obtenerListaEnString(listado));
     }
     
     @FXML
@@ -212,7 +217,7 @@ public class FXMLAnchorPaneListadoProductosController<T extends Producto>
         // Si el nombre asignado al archivo txt es valido
         if (isStringValido(txtFieldNombreArchTxt.getText()) && txtFieldNombreArchTxt.getText().endsWith(".txt")) {
             // Obtiene el listado entero en una cadena
-            String listadoStr = obtenerListaEnString(listado, null);
+            String listadoStr = obtenerListaEnString(listado, txtFieldNombreArchTxt.getText().replace(".txt", ""));
             
             // Lo guarda
             importarATxt(txtFieldNombreArchTxt.getText(), listadoStr);

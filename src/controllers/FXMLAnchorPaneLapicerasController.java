@@ -21,7 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import validadores.ValidadorProducto;
+import servicios.ValidadorProducto;
 
 public class FXMLAnchorPaneLapicerasController implements Initializable, ValidadorProducto {
 
@@ -106,6 +106,7 @@ public class FXMLAnchorPaneLapicerasController implements Initializable, Validad
         // Carga la lista de lapiceras en una ObservableList para poder usarla dentro de JavaFX
         obsListLapiceras = FXCollections.observableArrayList(gestorLapiceras.getLista());
         
+        // Necesario para la actualizacion
         tableViewLapiceras.refresh();
         
         // Le inserta las lapiceras que haya en la lista a la TableView
@@ -139,10 +140,14 @@ public class FXMLAnchorPaneLapicerasController implements Initializable, Validad
     public void handleAgregarLapicera() throws IOException {
         // Se crea una lapicera vacia para luego settearle los datos el la ventana de dialogo
         Lapicera lapicera = new Lapicera();
+        
+        // Se le asigna el id
         lapicera.setId(gestorLapiceras.obtenerNuevoID(gestorLapiceras.getLista()));
         
+        // Abre la ventana para ingresar los datos de la Lapicera y guarda el retorno
         boolean confirmado = abrirFXMLAnchorPaneLapicerasDialogo(lapicera);
         
+        // En caso de que se haya confirmado la agregacion
         if(confirmado) {
             gestorLapiceras.agregar(lapicera);
             cargarTableViewLapiceras();
@@ -151,11 +156,14 @@ public class FXMLAnchorPaneLapicerasController implements Initializable, Validad
     
     @FXML
     public void handleModificarLapicera() throws IOException {
-        // Se crea un obj Lapicera con el item seleccionado en el TableView
+        // Se crea un obj Lapicera con los valores del item seleccionado en el TableView
         Lapicera lapicera = tableViewLapiceras.getSelectionModel().getSelectedItem();
         
         if(lapicera != null) {
+            // Abre la ventana para modificar los datos de la Lapicera y guarda el retorno
             boolean confirmado = abrirFXMLAnchorPaneLapicerasDialogo(lapicera);
+            
+            // En caso de que se haya confirmado la modificacion
             if (confirmado) {
                 gestorLapiceras.modificar(lapicera);
                 cargarTableViewLapiceras();

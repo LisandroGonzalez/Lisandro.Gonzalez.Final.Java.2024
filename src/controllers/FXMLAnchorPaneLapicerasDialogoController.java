@@ -16,7 +16,7 @@ import static modelos.entidades.Color.NEGRO;
 import modelos.entidades.Lapicera;
 import modelos.entidades.TipoLapicera;
 import static modelos.entidades.TipoLapicera.CON_TAPA;
-import validadores.ValidadorProducto;
+import servicios.ValidadorProducto;
 import servicios.Auxiliar;
 
 public class FXMLAnchorPaneLapicerasDialogoController implements Initializable, ValidadorProducto, Auxiliar<Lapicera> {
@@ -42,7 +42,10 @@ public class FXMLAnchorPaneLapicerasDialogoController implements Initializable, 
     @FXML
     private TextField txtFieldPrecio;
     
+    // Ventana de dialogo
     private Stage ventana;
+    
+    // Atributos para la manipulacion de datos
     private boolean btnConfirmarApretado = false;
     private Lapicera lapicera;
 
@@ -88,6 +91,7 @@ public class FXMLAnchorPaneLapicerasDialogoController implements Initializable, 
         cargarMenuButtons();
     }    
     
+    @FXML
     public void handleBtnConfirmar() {
         if (datosValidos()) {
             lapicera.setNombre(txtFieldNombre.getText());
@@ -100,8 +104,9 @@ public class FXMLAnchorPaneLapicerasDialogoController implements Initializable, 
         }
     }
     
+    @FXML
     public void handleBtnCancelar() {
-        ventana.close();
+        ventana.close(); // Cierra la ventana de dialogos sin modificar la lista
     }
     
     private void cargarMenuButtons() {
@@ -135,6 +140,7 @@ public class FXMLAnchorPaneLapicerasDialogoController implements Initializable, 
             mensajeError += "Tipo invalido.\n";
         }
 
+        // Si la cadena no esta vacia, entonces hubo un error en el ingreso de datos
         if(isStringValido(mensajeError)) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error.");

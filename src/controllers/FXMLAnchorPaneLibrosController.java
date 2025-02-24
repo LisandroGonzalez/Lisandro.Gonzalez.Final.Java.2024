@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import modelos.entidades.GeneroLibro;
 import modelos.entidades.Libro;
 import modelos.gestores.GestorGenerico;
-import validadores.ValidadorProducto;
+import servicios.ValidadorProducto;
 
 public class FXMLAnchorPaneLibrosController implements Initializable, ValidadorProducto {
 
@@ -110,6 +110,7 @@ public class FXMLAnchorPaneLibrosController implements Initializable, ValidadorP
         // Carga la lista de libros en una ObservableList para poder usarla dentro de JavaFX
         obsListLibros = FXCollections.observableArrayList(gestorLibros.getLista());
         
+        // Necesario para la actualizacion
         tableViewLibros.refresh();
         
         // Le inserta los libros que haya en la lista a la TableView
@@ -142,13 +143,17 @@ public class FXMLAnchorPaneLibrosController implements Initializable, ValidadorP
     }
     
     @FXML
-    void handleAgregarLibro() throws IOException {
+    public void handleAgregarLibro() throws IOException {
         // Se crea un libro vacio para luego settearle los datos en la ventana de dialogo
         Libro libro = new Libro();
+        
+        // Se le asigna el id
         libro.setId(gestorLibros.obtenerNuevoID(gestorLibros.getLista()));
         
+        // Abre la ventana para ingresar los datos de la Lapicera y guarda el retorno
         boolean confirmado = abrirFXMLAnchorPaneLibrosDialogo(libro);
         
+        // En caso de que se haya confirmado la agregacion
         if(confirmado) {
             gestorLibros.agregar(libro);
             cargarTableViewLibros();
@@ -156,11 +161,12 @@ public class FXMLAnchorPaneLibrosController implements Initializable, ValidadorP
     }
 
     @FXML
-    void handleModificarLibro() throws IOException {
+    public void handleModificarLibro() throws IOException {
         // Se crea un obj Libro con el item seleccionado en el TableView
         Libro libro = tableViewLibros.getSelectionModel().getSelectedItem();
         
         if(libro != null) {
+            // Abre la ventana para modificar los datos del Libro y guarda el retorno
             boolean confirmado = abrirFXMLAnchorPaneLibrosDialogo(libro);
             if (confirmado) {
                 gestorLibros.modificar(libro);
@@ -175,7 +181,7 @@ public class FXMLAnchorPaneLibrosController implements Initializable, ValidadorP
     }
 
     @FXML
-    void handleEliminarLibro() {
+    public void handleEliminarLibro() {
         // Se crea un obj Libro con el item seleccionado en el TableView
         Libro libro = tableViewLibros.getSelectionModel().getSelectedItem();
         

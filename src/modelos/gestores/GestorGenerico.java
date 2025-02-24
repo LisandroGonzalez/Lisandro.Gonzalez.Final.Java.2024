@@ -1,12 +1,7 @@
 package modelos.gestores;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import modelos.entidades.Producto;
-import modelos.excepciones.ElementoNoEncontradoException;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import modelos.repositorios.RepositorioGenerico;
 import servicios.CRUD;
 import servicios.IdentificableFunc;

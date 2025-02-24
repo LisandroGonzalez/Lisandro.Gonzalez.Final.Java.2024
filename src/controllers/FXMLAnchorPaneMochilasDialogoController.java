@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controllers;
 
 import java.net.URL;
@@ -13,13 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelos.entidades.Mochila;
-import validadores.ValidadorProducto;
+import servicios.ValidadorProducto;
 
-/**
- * FXML Controller class
- *
- * @author USER
- */
 public class FXMLAnchorPaneMochilasDialogoController implements Initializable, ValidadorProducto {
 
     @FXML
@@ -43,7 +34,10 @@ public class FXMLAnchorPaneMochilasDialogoController implements Initializable, V
     @FXML
     private TextField txtFieldPrecio;
     
+    // Ventana de dialogo
     private Stage ventana;
+    
+    // Atributos para la manipulacion de datos
     private boolean btnConfirmarApretado = false;
     private Mochila mochila;
 
@@ -78,9 +72,9 @@ public class FXMLAnchorPaneMochilasDialogoController implements Initializable, V
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
     }    
     
+    @FXML
     public void handleBtnConfirmar() {
         if (datosValidos()) {
             mochila.setNombre(txtFieldNombre.getText());
@@ -93,8 +87,9 @@ public class FXMLAnchorPaneMochilasDialogoController implements Initializable, V
         }
     }
     
+    @FXML
     public void handleBtnCancelar() {
-        ventana.close();
+        ventana.close(); // Cierra la ventana de dialogos sin modificar la lista
     }
     
     private boolean datosValidos() {
@@ -106,6 +101,7 @@ public class FXMLAnchorPaneMochilasDialogoController implements Initializable, V
         if(!isStringValido(txtFieldDisenio.getText()))  { mensajeError += "Diseño invalido.\n"; }
         if(!isNumeroPositivo(txtFieldCapacidad.getText())) { mensajeError += "Capacidad invalida.\n"; }
 
+        // Si la cadena no esta vacia, entonces hubo un error en el ingreso de datos
         if(isStringValido(mensajeError)) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error.");
