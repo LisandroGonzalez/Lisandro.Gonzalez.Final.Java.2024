@@ -51,7 +51,7 @@ public interface ListFunc<T> {
             // En caso de que se le haya paso un titulo
             sb.append(titulo).append("\n");
             sb.append("-------------------------------\n");
-            lista.forEach(e -> sb.append(e.toString())
+            lista.forEach(e -> sb.append(e.toString()) // agrega cada elemento de la lista a la cadena
                     .append("-------------------------------\n"));
             return sb.toString();
         }
@@ -69,7 +69,7 @@ public interface ListFunc<T> {
         else {
             StringBuilder sb = new StringBuilder();
             sb.append("-------------------------------\n");
-            lista.forEach(e -> sb.append(e.toString())
+            lista.forEach(e -> sb.append(e.toString()) // agrega cada elemento de la lista a la cadena
                     .append("-------------------------------\n"));
             return sb.toString();
         }

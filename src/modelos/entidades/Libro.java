@@ -95,34 +95,4 @@ public class Libro extends Producto {
                 this.genero.equals(that.genero) &&
                 this.cantHojas == that.cantHojas;
     }
-    
-    /**
-     * Comparador por autor
-     * @param l1
-     * @param l2
-     * @return 0 -> son iguales
-     */
-    public int compareByAutor(Libro l1, Libro l2) {
-        return l1.autor.compareToIgnoreCase(l2.autor);
-    }
-    
-    /**
-     * Comparador por genero
-     * @param l1
-     * @param l2
-     * @return 0 -> son iguales
-     */
-    public int compareByGenero(Libro l1, Libro l2) {
-        return l1.genero.compareTo(l2.genero);
-    }
-    
-    /**
-     * Comparador por cantidad de hojas
-     * @param l1
-     * @param l2
-     * @return 
-     */
-    public int compareByCantHojas(Libro l1, Libro l2) {
-        return Integer.compare(l1.cantHojas, l2.cantHojas);
-    }
 }

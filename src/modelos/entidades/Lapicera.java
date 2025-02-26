@@ -83,24 +83,4 @@ public class Lapicera extends Producto {
                 this.color.equals(that.color) &&
                 this.tipo.equals(that.tipo);
     }
-    
-    /**
-     * Compara los colores de las lapiceras
-     * @param l1
-     * @param l2
-     * @return 0 -> son iguales
-     */
-    public int compareByColor(Lapicera l1, Lapicera l2) {
-        return l1.color.compareTo(l2.color);
-    }
-    
-    /**
-     * Compara los tipos de las lapiceras
-     * @param l1
-     * @param l2
-     * @return 0 -> son iguales
-     */
-    public int compareByTipo(Lapicera l1, Lapicera l2) {
-        return l1.tipo.compareTo(l2.tipo);
-    }
 }

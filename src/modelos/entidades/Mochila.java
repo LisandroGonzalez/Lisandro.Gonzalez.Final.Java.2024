@@ -83,24 +83,4 @@ public class Mochila extends Producto {
                 this.disenio.equals(that.disenio) &&
                 this.capacidad == that.capacidad;
     }
-    
-    /**
-     * Usa Comparable de String para comparar los nombres
-     * @param m1
-     * @param m2
-     * @return 0 -> son iguales
-     */
-    public int compareByDisenio(Mochila m1, Mochila m2) {
-        return m1.disenio.compareToIgnoreCase(m2.disenio);
-    }
-    
-    /**
-     * Usa Comparator de la clase Double para comparar 2 capacidades
-     * @param m1
-     * @param m2
-     * @return 0 -> son iguales
-     */
-    public int compareByCapacidad(Mochila m1, Mochila m2) {
-        return Double.compare(m1.capacidad, m2.capacidad);
-    }
 }

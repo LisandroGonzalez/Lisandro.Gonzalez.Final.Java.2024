@@ -7,8 +7,8 @@ import servicios.CRUD;
 import servicios.IdentificableFunc;
 
 public class GestorGenerico<T extends Producto> implements CRUD<T>, RepositorioGenerico, IdentificableFunc<T> {
-    protected String archivo;
-    protected List<T> lista;
+    private String archivo;
+    private List<T> lista;
     
     public GestorGenerico(String archivo, Class<T> clase) {
         this.archivo = archivo;
@@ -18,7 +18,6 @@ public class GestorGenerico<T extends Producto> implements CRUD<T>, RepositorioG
     
     /**
      * Agrega un elemento a la lista.
-     * @param archivo
      * @param e 
      */
     @Override
@@ -28,7 +27,6 @@ public class GestorGenerico<T extends Producto> implements CRUD<T>, RepositorioG
     
     /**
      * Elimina un elemento de la lista.
-     * @param archivo
      * @param e 
      */
     @Override
@@ -41,13 +39,13 @@ public class GestorGenerico<T extends Producto> implements CRUD<T>, RepositorioG
      * @param elemento 
      */
     @Override
-    public void modificar(T elemento){
+    public void modificar(T e){
         // Obtiene el indice en el que se encuentra dentro de la lista
-        int index = obtenerIndiceEnLista(lista, elemento);
+        int index = obtenerIndiceEnLista(lista, e);
 
         // De haber sido encontrado lo modifica y lo guarda
         if (index != -1) {
-            lista.set(index, elemento);
+            lista.set(index, e);
         }
     }
     
@@ -65,5 +63,5 @@ public class GestorGenerico<T extends Producto> implements CRUD<T>, RepositorioG
      */
     public void guardarCambios() {
         guardarEnCSV(archivo, lista);
-    }
+    }   
 }

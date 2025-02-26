@@ -58,7 +58,7 @@ public interface Auxiliar <T extends Producto> {
         Field[] campos = obtenerTodosLosCampos(clase);
         
         return Arrays.stream(campos)  // Convierte el Array a Steam
-                .map(Field::getName)          // Mappea por cada campo el nombre del mismo
+                .map(Field::getName)         // Mappea por cada campo el nombre del mismo
                 .toArray(String[]::new); // Retorna el resultado como un array de Strings
     }
     

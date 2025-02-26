@@ -99,7 +99,9 @@ public class FXMLAnchorPaneMochilasDialogoController implements Initializable, V
         if(!isNumeroPositivo(txtFieldPrecio.getText()))   { mensajeError += "Precio invalido.\n"; }
         if(!isStringValido(txtFieldMarca.getText()))    { mensajeError += "Marca invalida.\n"; }
         if(!isStringValido(txtFieldDisenio.getText()))  { mensajeError += "Diseño invalido.\n"; }
-        if(!isNumeroPositivo(txtFieldCapacidad.getText())) { mensajeError += "Capacidad invalida.\n"; }
+        if(!isNumeroPositivo(txtFieldCapacidad.getText()) && Double.parseDouble(txtFieldCapacidad.getText()) < 20) { 
+            mensajeError += "Capacidad invalida.\n";
+        }
 
         // Si la cadena no esta vacia, entonces hubo un error en el ingreso de datos
         if(isStringValido(mensajeError)) {

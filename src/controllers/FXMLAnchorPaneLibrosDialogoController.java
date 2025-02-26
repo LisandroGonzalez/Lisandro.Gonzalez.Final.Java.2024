@@ -133,7 +133,7 @@ public class FXMLAnchorPaneLibrosDialogoController implements Initializable, Val
         if(!isStringValido(txtFieldMarca.getText())) {
             mensajeError += "Marca invalida.\n";
         }
-        if(!isNumeroPositivo(txtFieldCantHojas.getText())) {
+        if(!isNumeroPositivo(txtFieldCantHojas.getText()) && Double.parseDouble(txtFieldCantHojas.getText()) < 500) {
             mensajeError += "Cantidad de hojas invalida.\n";
         }
         if(!isStringValido(txtFieldAutor.getText())) {

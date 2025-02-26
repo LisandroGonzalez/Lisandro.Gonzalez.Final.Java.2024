@@ -135,10 +135,7 @@ public class FXMLAnchorPaneMochilasController implements Initializable, Validado
     @FXML
     public void handleAgregarMochila() throws IOException {
         // Se crea una mochila vacia para luego settearle los datos el la ventana de dialogo
-        Mochila mochila = new Mochila();
-        
-        // Se le asigna el id
-        mochila.setId(gestorMochilas.obtenerNuevoID(gestorMochilas.getLista()));
+        Mochila mochila = new Mochila(gestorMochilas.obtenerNuevoID(gestorMochilas.getLista()));
         
         // Abre la ventana para ingresar los datos de la Mochila y guarda el retorno
         boolean confirmado = abrirFXMLAnchorPaneMochilasDialogo(mochila);
