@@ -8,7 +8,9 @@ Soy Lisandro Gonzalez, curso la Tecnicatura en Programacion en la UTN Avellaneda
 Esta aplicacion se encarga del manejo de productos a travez de una interfaz grafica.
 
 # Diagrama de clases UML:
-Imagen
+
+![image](https://github.com/user-attachments/assets/e8ca48b4-fca2-4a95-85a7-1478c3754d0f)
+
 
 # Archivos generados:
 lapiceras en formato json o csv
